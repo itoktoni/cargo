@@ -1,15 +1,16 @@
 <?php
 
-namespace Modules\Sales\Http\Controllers;
+namespace Modules\Rajaongkir\Http\Controllers;
 
 use Plugin\Helper;
 use Plugin\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Services\MasterService;
 use App\Http\Requests\GeneralRequest;
-use Modules\Sales\Dao\Repositories\MetodeRepository;
+use Modules\Rajaongkir\Http\Requests\PaketRequest;
+use Modules\Rajaongkir\Dao\Repositories\PaketRepository;
 
-class MetodeController extends Controller
+class PaketController extends Controller
 {
     public $template;
     public static $model;
@@ -17,7 +18,7 @@ class MetodeController extends Controller
     public function __construct()
     {
         if (self::$model == null) {
-            self::$model = new MetodeRepository();
+            self::$model = new PaketRepository();
         }
         $this->template  = Helper::getTemplate(__CLASS__);
     }
@@ -29,18 +30,15 @@ class MetodeController extends Controller
 
     private function share($data = [])
     {
-        $category = Helper::shareOption((new MetodeRepository()));
-
         $view = [
             'key'      => self::$model->getKeyName(),
             'template' => $this->template,
-            'categories' => $category
         ];
 
         return array_merge($view, $data);
     }
 
-    public function create(MasterService $service, GeneralRequest $request)
+    public function create(MasterService $service, PaketRequest $request)
     {
         if (request()->isMethod('POST')) {
 
@@ -50,7 +48,7 @@ class MetodeController extends Controller
         return view(Helper::setViewCreate())->with($this->share());
     }
 
-    public function update(MasterService $service, GeneralRequest $request)
+    public function update(MasterService $service, PaketRequest $request)
     {
         if (request()->isMethod('POST')) {
             $data = $service->update(self::$model, $request->all());

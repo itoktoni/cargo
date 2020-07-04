@@ -1004,3 +1004,7 @@ td img {
     top: -5px;
     left: 110%;
 }
+
+.has-error .chosen-single {
+    border: 1px solid #a94442;
+}

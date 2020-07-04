@@ -1,15 +1,15 @@
 <?php
 
-namespace Modules\Rajaongkir\Http\Controllers;
+namespace Modules\Sales\Http\Controllers;
 
 use Plugin\Helper;
 use Plugin\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Services\MasterService;
 use App\Http\Requests\GeneralRequest;
-use Modules\Rajaongkir\Dao\Repositories\DistrictRepository;
+use Modules\Sales\Dao\Repositories\CategoryRepository;
 
-class DistrictController extends Controller
+class CategoryController extends Controller
 {
     public $template;
     public static $model;
@@ -17,7 +17,7 @@ class DistrictController extends Controller
     public function __construct()
     {
         if (self::$model == null) {
-            self::$model = new DistrictRepository();
+            self::$model = new CategoryRepository();
         }
         $this->template  = Helper::getTemplate(__CLASS__);
     }
@@ -29,9 +29,12 @@ class DistrictController extends Controller
 
     private function share($data = [])
     {
+        $category = Helper::shareOption((new CategoryRepository()));
+
         $view = [
             'key'      => self::$model->getKeyName(),
             'template' => $this->template,
+            'categories' => $category
         ];
 
         return array_merge($view, $data);

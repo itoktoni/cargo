@@ -6,10 +6,10 @@ use Plugin\Helper;
 use Plugin\Notes;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cache;
-use Modules\Rajaongkir\Dao\Models\District;
+use Modules\Rajaongkir\Dao\Models\Paket;
 use App\Dao\Interfaces\MasterInterface;
 
-class DistrictRepository extends District implements MasterInterface
+class PaketRepository extends Paket implements MasterInterface
 {
     public function dataRepository()
     {

@@ -7,7 +7,9 @@ use Plugin\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Services\MasterService;
 use App\Http\Requests\GeneralRequest;
+use Modules\Rajaongkir\Http\Requests\CityRequest;
 use Modules\Rajaongkir\Dao\Repositories\CityRepository;
+use Modules\Rajaongkir\Dao\Repositories\ProvinceRepository;
 
 class CityController extends Controller
 {
@@ -29,25 +31,26 @@ class CityController extends Controller
 
     private function share($data = [])
     {
+        $provinces = Helper::shareOption((new ProvinceRepository()));
         $view = [
             'key'      => self::$model->getKeyName(),
             'template' => $this->template,
+            'provinces' => $provinces,
         ];
 
         return array_merge($view, $data);
     }
 
-    public function create(MasterService $service, GeneralRequest $request)
+    public function create(MasterService $service, CityRequest $request)
     {
         if (request()->isMethod('POST')) {
-
             $data = $service->save(self::$model, $request->all());
             return Response::redirectBack($data);
         }
         return view(Helper::setViewCreate())->with($this->share());
     }
 
-    public function update(MasterService $service, GeneralRequest $request)
+    public function update(MasterService $service, CityRequest $request)
     {
         if (request()->isMethod('POST')) {
             $data = $service->update(self::$model, $request->all());

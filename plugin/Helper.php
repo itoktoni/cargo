@@ -717,6 +717,17 @@ class Helper
         return 'page.' . $template . '.action';
     }
 
+    
+    public static function setViewCrud($template = 'master', $modular = false)
+    {
+        if ($modular) {
+            $view = ucfirst($modular) . '::page.' . $template . '.crud';
+            return $view;
+        }
+
+        return 'page.' . $template . '.crud';
+    }
+
     public static function setViewCheckbox($template = 'master', $modular = false)
     {
         if ($modular) {

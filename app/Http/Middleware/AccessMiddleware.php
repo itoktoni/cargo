@@ -136,10 +136,10 @@ class AccessMiddleware
                 ->leftJoin(self::$group_module_connection_module->getTable(), 'conn_gm_module', '=', 'module_code')
                 ->where('module_enable', '1')
                 ->whereIn('conn_gm_group_module', self::$list_group_module->pluck('group_module_code')->toArray())
-                ->orderBy('action_path', 'asc')
-                ->orderBy('action_function', 'asc')
                 ->orderBy('module_sort', 'asc')
-                ->orderBy('action_sort', 'asc');
+                ->orderBy('action_sort', 'asc')
+                ->orderBy('action_path', 'asc')
+                ->orderBy('action_function', 'asc');
             return $routing->get();
         });
     }

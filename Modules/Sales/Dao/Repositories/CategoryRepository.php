@@ -6,10 +6,10 @@ use Plugin\Helper;
 use Plugin\Notes;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Cache;
-use Modules\Sales\Dao\Models\Metode;
+use Modules\Sales\Dao\Models\Category;
 use App\Dao\Interfaces\MasterInterface;
 
-class MetodeRepository extends Metode implements MasterInterface
+class CategoryRepository extends Category implements MasterInterface
 {
     public function dataRepository()
     {

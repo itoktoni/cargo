@@ -10,7 +10,7 @@
         </div>
     </div>
     <div class="header-right">
-        <ul class="notifications">
+        {{-- <ul class="notifications">
             <li>
                 <a href="#" class="dropdown-toggle notification-icon" data-toggle="dropdown"><i
                         class="fa fa-tasks"></i><span class="badge">3</span>
@@ -100,7 +100,7 @@
                     <i style="color: white;" class="fa fa-folder-open"></i>
                 </a>
             </li>
-        </ul>
+        </ul> --}}
         <span class="separator"></span>
         <div id="userbox" class="userbox">
             <a href="#" data-toggle="dropdown">

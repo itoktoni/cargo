@@ -3,35 +3,35 @@
                 @switch($action_function)
                 @case('data')
                 @isset($action['create'])
-                <a href="{!! route($module.'_create') !!}" class="btn btn-success">Create</a>
+                <a href="{!! route($module.'_create') !!}" class="btn btn-success">Simpan</a>
                 @endisset
                 @isset($action['delete'])
                 <button type="submit" onclick="return confirm('Are you sure to delete data ?');" id="delete-action"
-                        value="delete" name="action" class="btn btn-danger">Delete</button>
+                        value="delete" name="action" class="btn btn-danger">Hapus</button>
                 @endisset
                 @break
 
                 @case('create')
-                <a id="linkMenu" href="{!! route($module.'_data') !!}" class="btn btn-warning">Back</a>
-                <button type="reset" class="btn btn-default">Reset</button>
+                <a id="linkMenu" href="{!! route($module.'_data') !!}" class="btn btn-warning">Kembali</a>
+                <button type="reset" class="btn btn-default">Bersihkan</button>
                 @isset($action['create'])
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
                 @endisset
                 @break
 
                 @case('update')
-                <a id="linkMenu" href="{!! route($module.'_data') !!}" class="btn btn-warning">Back</a>
-                <button type="reset" class="btn btn-default">Reset</button>
+                <a id="linkMenu" href="{!! route($module.'_data') !!}" class="btn btn-warning">Kembali</a>
+                <button type="reset" class="btn btn-default">Bersihkan</button>
                 @isset($action['update'])
-                <button type="submit" class="btn btn-primary">Save</button>
+                <button type="submit" class="btn btn-primary">Ubah</button>
                 @endisset
                 @break
 
                 @case('show')
-                <a id="linkMenu" href="{!! route($module.'_data') !!}" class="btn btn-warning">Back</a>
+                <a id="linkMenu" href="{!! route($module.'_data') !!}" class="btn btn-warning">Kembali</a>
                 @isset($action['update'])
                 <a id="linkMenu" href="{!! route(trim(" {$module}_update"), ["code"=> $model->{$key}]) !!}" class="btn
-                        btn-primary">Edit</a>
+                        btn-primary">Ubah</a>
                 @endisset
                 @break
                 @endswitch

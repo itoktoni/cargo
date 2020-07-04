@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Top extends Model
 {
   protected $table = 'finance_top';
-  protected $primaryKey = 'finance_top_name';
+  protected $primaryKey = 'finance_top_code';
   protected $fillable = [
     'finance_top_code',
     'finance_top_name',

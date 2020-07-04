@@ -37,7 +37,7 @@
                             <input autofocus name="search" class="form-control" placeholder="Advance Search"
                                 type="text">
                             <span class="input-group-btn">
-                                <button type="submit" class="btn btn-primary">Search</button>
+                                <button type="submit" class="btn btn-primary">Cari</button>
                             </span>
                         </div>
                     </div>
@@ -50,7 +50,7 @@
         {!! Form::open(['route' => $module.'_delete', 'id' => '', 'files' => true]) !!}
         <header class="panel-heading">
             <h2 class="panel-title text-right">
-                List {{ ucwords(str_replace('_',' ',$template)) }}
+                Data {{ ucwords(str_replace('_',' ',$template)) }}
             </h2>
         </header>
         <div id="selection" class="row">

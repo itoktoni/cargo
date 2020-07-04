@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\Sales\Http\Services;
+namespace Modules\Rajaongkir\Http\Services;
 
 use Plugin\Alert;
 use Plugin\Helper;
@@ -9,13 +9,13 @@ use App\Dao\Interfaces\MasterInterface;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 
-class OrderService extends MasterService
+class PriceService extends MasterService
 {
     public function save(MasterInterface $repository, $request)
     {
         $check = false;
         try {
-            $check = $repository->saveRepository($request);
+            $check = $repository->insertOrIgnore($request);
             Alert::create();
         } catch (\Throwable $th) {
             Alert::error($th->getMessage());

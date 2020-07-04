@@ -1,6 +1,3 @@
-@component('component.summernote', ['array' => ['basic']])
-
-@endcomponent
 <div class="form-group">
 
     {!! Form::label('name', 'Name', ['class' => 'col-md-2 control-label']) !!}

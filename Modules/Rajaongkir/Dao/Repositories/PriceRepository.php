@@ -2,19 +2,25 @@
 
 namespace Modules\Rajaongkir\Dao\Repositories;
 
-use Plugin\Helper;
 use Plugin\Notes;
+use Plugin\Helper;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cache;
-use Modules\Rajaongkir\Dao\Models\Price;
 use App\Dao\Interfaces\MasterInterface;
+use Modules\Rajaongkir\Dao\Models\Price;
 
 class PriceRepository extends Price implements MasterInterface
 {
     public function dataRepository()
     {
         $list = Helper::dataColumn($this->datatable, $this->getKeyName());
-        return $this->select($list);
+        
+        return $this->select([DB::raw('rajaongkir_price.*'), 'finance_top_name', 'rajaongkir_paket_name', DB::raw('from.rajaongkir_area_name as from_name'), DB::raw('from.rajaongkir_area_city_name as from_city'), DB::raw('to.rajaongkir_area_city_name as to_city'), DB::raw('to.rajaongkir_area_name as to_name'), DB::raw('to.rajaongkir_area_postcode as postcode')])
+        ->leftJoin('finance_top', 'finance_top_code', '=', 'rajaongkir_price_top')
+        ->leftJoin('rajaongkir_paket', 'rajaongkir_paket_code', '=', 'rajaongkir_price_paket')
+        ->leftJoin('rajaongkir_areas as from', DB::raw('from.rajaongkir_area_id'), '=', 'rajaongkir_price_from')
+        ->leftJoin('rajaongkir_areas as to', DB::raw('to.rajaongkir_area_id'), '=', 'rajaongkir_price_to');
     }
 
     public function saveRepository($request)

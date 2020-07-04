@@ -4,10 +4,13 @@ namespace Modules\Rajaongkir\Http\Controllers;
 
 use Plugin\Helper;
 use Plugin\Response;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Http\Services\MasterService;
 use App\Http\Requests\GeneralRequest;
 use Modules\Rajaongkir\Dao\Repositories\AreaRepository;
+use Modules\Rajaongkir\Dao\Repositories\CityRepository;
+use Modules\Rajaongkir\Dao\Repositories\ProvinceRepository;
 
 class AreaController extends Controller
 {
@@ -29,9 +32,14 @@ class AreaController extends Controller
 
     private function share($data = [])
     {
+        $cities = Helper::shareOption((new CityRepository()),false, true,false);
+        $data_city = $cities->mapWithKeys(function($item){
+            return [$item['rajaongkir_city_id'] => $item['rajaongkir_city_province_name'].' - '.$item['rajaongkir_city_name']];
+        });
         $view = [
             'key'      => self::$model->getKeyName(),
             'template' => $this->template,
+            'cities' => $data_city,
         ];
 
         return array_merge($view, $data);
@@ -40,7 +48,6 @@ class AreaController extends Controller
     public function create(MasterService $service, GeneralRequest $request)
     {
         if (request()->isMethod('POST')) {
-
             $data = $service->save(self::$model, $request->all());
             return Response::redirectBack($data);
         }
