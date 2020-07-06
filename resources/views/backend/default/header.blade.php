@@ -10,8 +10,8 @@
         </div>
     </div>
     <div class="header-right">
-        {{-- <ul class="notifications">
-            <li>
+        <ul class="notifications">
+            {{-- <li>
                 <a href="#" class="dropdown-toggle notification-icon" data-toggle="dropdown"><i
                         class="fa fa-tasks"></i><span class="badge">3</span>
                 </a>
@@ -93,14 +93,14 @@
                         </div>
                     </div>
                 </div>
-            </li>
-            <li style="border-left: 1px solid grey;padding-left: 10px;">
+            </li> --}}
+             <li>
                 <a id="rightMenu" href="#" style="border:none;background-color: #191c21;color:white;"
                     class="sidebar-right-toggle notification-icon" data-open="sidebar-right">
                     <i style="color: white;" class="fa fa-folder-open"></i>
                 </a>
-            </li>
-        </ul> --}}
+            </li> 
+        </ul> 
         <span class="separator"></span>
         <div id="userbox" class="userbox">
             <a href="#" data-toggle="dropdown">

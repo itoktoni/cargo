@@ -6,6 +6,7 @@ use Plugin\Alert;
 use Plugin\Helper;
 use App\Http\Services\MasterService;
 use App\Dao\Interfaces\MasterInterface;
+use Modules\Finance\Dao\Models\Payment;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Validator;
 
@@ -25,17 +26,8 @@ class OrderService extends MasterService
         return $check;
     }
 
-    public function update(MasterInterface $repository, $request)
+    public function updateDelivery($model, $request)
     {
-        $master = $request;
-        $data = collect($request);
-        $where = $data->pull('rajaongkir_price_value');
-        foreach ($request as $value) {
-            $harga = $value['rajaongkir_price_value'];
-            unset($value['rajaongkir_price_value']);
-            $check = $repository->updateOrInsert($value, ['rajaongkir_price_value' => $harga]);
-        }
-        
-        Alert::update();
+        $check = $model->create($request);
     }
 }

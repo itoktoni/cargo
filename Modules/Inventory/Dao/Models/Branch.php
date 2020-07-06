@@ -3,6 +3,7 @@
 namespace Modules\Inventory\Dao\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Modules\Rajaongkir\Dao\Models\Area;
 
 class Branch extends Model
 {
@@ -12,6 +13,7 @@ class Branch extends Model
     'inventory_branch_id',
     'inventory_branch_name',
     'inventory_branch_description',
+    'inventory_branch_area_id',
   ];
 
   public $timestamps = false;
@@ -27,6 +29,7 @@ class Branch extends Model
   public $datatable = [
     'inventory_branch_id'          => [false => 'ID'],
     'inventory_branch_name'        => [true => 'Name'],
+    'rajaongkir_area_name'        => [true => 'Area'],
     'inventory_branch_description' => [true => 'Description'],
   ];
 
@@ -34,4 +37,9 @@ class Branch extends Model
     '1' => ['Active', 'primary'],
     '0' => ['Not Active', 'danger'],
   ];
+
+  public function area()
+  {
+      return $this->hasOne(Area::class, 'rajaongkir_area_id', 'inventory_branch_area_id');
+  }
 }

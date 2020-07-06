@@ -12,7 +12,8 @@ class BranchRepository extends Branch implements MasterInterface
     public function dataRepository()
     {
         $list = Helper::dataColumn($this->datatable, $this->getKeyName());
-        return $this->select($list);
+        return $this->select($list)
+        ->leftJoin('rajaongkir_areas', 'rajaongkir_area_id', '=', 'inventory_branch_area_id');
     }
 
     public function saveRepository($request)

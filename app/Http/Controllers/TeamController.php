@@ -12,6 +12,7 @@ use App\Http\Requests\TeamCreateRequest;
 use App\Http\Requests\TeamUpdateRequest;
 use Illuminate\Support\Facades\Validator;
 use App\Dao\Repositories\GroupUserRepository;
+use Modules\Inventory\Dao\Repositories\BranchRepository;
 
 class TeamController extends Controller
 {
@@ -35,11 +36,13 @@ class TeamController extends Controller
     {
         $status = Helper::shareStatus(self::$model->status)->prepend('- Select Status -', '');
         $group = Helper::shareOption((new GroupUserRepository()));
+        $branch = Helper::shareOption((new BranchRepository()));
         $view = [
             'key'      => self::$model->getKeyName(),
             'template' => $this->template,
             'status' => $status,
             'group' => $group,
+            'branch' => $branch,
         ];
 
         return array_merge($view, $data);
@@ -48,7 +51,6 @@ class TeamController extends Controller
     public function create(MasterService $service, TeamCreateRequest $request)
     {
         if (request()->isMethod('POST')) {
-
             $data = $service->save(self::$model, $request->all());
             return Response::redirectBack($data);
         }

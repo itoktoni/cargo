@@ -10,25 +10,19 @@ use Modules\Sales\Dao\Models\Order;
 use Modules\Crm\Dao\Models\Customer;
 use App\Dao\Interfaces\MasterInterface;
 use Illuminate\Database\QueryException;
-use Modules\Forwarder\Dao\Models\Vendor;
 
 class OrderRepository extends Order implements MasterInterface
 {
     public $data;
     public static $customer;
-    public static $vendor;
 
     public function dataRepository()
     {
-        if (self::$customer == null) {
-            self::$customer = new User();
-        }
-        if (self::$vendor == null) {
-            self::$vendor = new Vendor();
-        }
-
         $list = Helper::dataColumn($this->datatable, $this->getKeyName());
-        return $this->select($list);
+        $list2 = \array_merge($list, ['finance_top_name', 'rajaongkir_paket_name']);
+        return $this->select($list2)
+        ->leftJoin('finance_top', 'finance_top_code', '=', 'sales_order_rajaongkir_finance_top_id')
+        ->leftJoin('rajaongkir_paket', 'rajaongkir_paket_code', '=', 'sales_order_rajaongkir_rajaongkir_paket_id');
     }
 
     public function userRepository($id)

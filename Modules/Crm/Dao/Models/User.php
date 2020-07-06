@@ -30,11 +30,12 @@ class User extends Model
     'api_token',
     'province',
     'city',
-    'district',
+    'area',
     'postcode',
+    'branch',
   ];
 
-  public $timestamps = true;
+  public $timestamps = false;
   public $incrementing = true;
   public $rules = [
     'name' => 'required|min:3',

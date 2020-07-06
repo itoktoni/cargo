@@ -30,21 +30,19 @@
 
 </div>
 <hr>
-
 @foreach ($paket as $kpaket => $vpaket)
 <div class="form-group">
+    <input type="hidden" name="packages[{{ $loop->index }}][paket]" value="{{ $kpaket }}">
+    @foreach ($tops as $key => $top)
 
     {!! Form::label('name', 'Paket '. $vpaket , ['class' => 'col-md-3 control-label']) !!}
-    <input type="hidden" name="packages[{{ $loop->index }}][paket]" value="{{ $kpaket }}">
-
-    @foreach ($tops as $key => $top)
 
     <div class="col-md-9 {{ $errors->has('price.*') ? 'has-error' : ''}}">
 
         <div class="input-group">
             <span class="input-group-addon" id="basic-addon1">{{ $top }}</span>
-            <input type="text" name="price[{{ $loop->index }}][harga]" class="form-control number" id="">
-            <input type="hidden" name="price[{{ $loop->index }}][top]" value="{{ $key }}">
+            <input type="text" name="price[{{ $loop->index }}][{{ $kpaket }}][harga]" class="form-control number" id="">
+            <input type="hidden" name="price[{{ $loop->index }}][{{ $kpaket }}][top]" value="{{ $key }}">
         </div>
 
         {!! $errors->first('top*', '<p class="help-block">:message</p>') !!}

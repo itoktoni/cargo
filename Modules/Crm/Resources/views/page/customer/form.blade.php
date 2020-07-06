@@ -32,6 +32,17 @@
     </div>
 
 </div>
+
+<div class="form-group">
+
+    {!! Form::label('name', 'Kota Area', ['class' => 'col-md-2 control-label']) !!}
+    <div class="col-md-10 {{ $errors->has('crm_customer_rajaongkir_area_id') ? 'has-error' : ''}}">
+        {{ Form::select('crm_customer_rajaongkir_area_id', $area, null, ['class'=> 'form-control']) }}
+        {!! $errors->first('crm_customer_rajaongkir_area_id', '<p class="help-block">:message</p>') !!}
+    </div>
+
+</div>
+
 <div class="form-group">
     {!! Form::label('name', 'Address', ['class' => 'col-md-2 control-label']) !!}
     <div class="col-md-4">

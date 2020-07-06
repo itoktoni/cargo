@@ -38,19 +38,22 @@ class PriceCreateRequest extends FormRequest
             foreach ($packages as $package) {
                 $paket = $package['paket'];
                 foreach ($price as $prices) {
-                    $harga = $prices['harga'];
-                    $top = $prices['top'];
+
+                    $price_paket = $prices[$paket];
+                    $harga = $price_paket['harga'];
+                    $top = $price_paket['top'];
 
                     foreach ($area_from as $f) {
                         $dari = $f['rajaongkir_area_postcode'];
-                    
+                        $from_id = $f['rajaongkir_area_id'];
+
                         foreach ($area_to as $t) {
                             $ke = $t['rajaongkir_area_postcode'];
-                        
+                            $to_id = $t['rajaongkir_area_id'];
                             $data[] = [
                             'rajaongkir_price_code' => $dari.$ke.$paket.$top,
-                            'rajaongkir_price_from' => $from,
-                            'rajaongkir_price_to' => $to,
+                            'rajaongkir_price_from' => $from_id,
+                            'rajaongkir_price_to' => $to_id,
                             'rajaongkir_price_top' => $top,
                             'rajaongkir_price_paket' => $paket,
                             'rajaongkir_price_value' => Helper::filterInput($harga),
@@ -60,7 +63,7 @@ class PriceCreateRequest extends FormRequest
                 }
             }
         }
-        
+        // dd($data);
         $this->merge([
             'data' => $data,
         ]);

@@ -16,7 +16,7 @@ class Location extends Model
     'inventory_location_description',
     'inventory_location_created_at',
     'inventory_location_created_by',
-  ];
+  ];  
 
   public $timestamps = false;
   public $incrementing = true;

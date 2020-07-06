@@ -40,17 +40,15 @@ class PriceController extends Controller
     {
         $tops = Helper::shareOption((new TopRepository()), false);
         $paket = Helper::shareOption((new PaketRepository()), false);
-        
         $view = [
             'key'      => self::$model->getKeyName(),
             'template' => $this->template,
             'tops' => $tops,
             'paket' => $paket,
         ];
-
         return array_merge($view, $data);
     }
-
+    
     public function create(PriceService $service, PriceCreateRequest $request)
     {
         if (request()->isMethod('POST')) {
@@ -66,7 +64,7 @@ class PriceController extends Controller
         $cities = Helper::shareOption((new CityRepository()), false, true, false);
         $data_city = $cities->mapWithKeys(function ($item) {
             return [$item['rajaongkir_city_id'] => $item['rajaongkir_city_province_name'].' - '.$item['rajaongkir_city_name']];
-        });
+        })->prepend('- Pilih salah satu -', '');
 
         return view(Helper::setViewCreate())->with($this->share([
             'cities' => $data_city,

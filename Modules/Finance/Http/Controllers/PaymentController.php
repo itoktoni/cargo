@@ -42,14 +42,12 @@ class PaymentController extends Controller
         $account = Helper::createOption((new AccountRepository()));
         $bank = Helper::createOption((new BankRepository()), false, true)->pluck('finance_bank_name', 'finance_bank_name');
         $order = Helper::createOption((new OrderRepository()));
-        $purchase = Helper::createOption((new PurchaseRepository()));
         $view = [
             'template' => $this->template,
             'status' => Helper::shareStatus(self::$model->status),
             'account' => $account,
             'bank' => $bank,
             'order' => $order,
-            'purchase' => $purchase,
             'flag' => $flag,
         ];
 

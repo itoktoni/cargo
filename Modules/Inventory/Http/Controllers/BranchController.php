@@ -7,6 +7,7 @@ use Plugin\Response;
 use App\Http\Controllers\Controller;
 use App\Http\Services\MasterService;
 use App\Http\Requests\GeneralRequest;
+use Modules\Rajaongkir\Dao\Repositories\AreaRepository;
 use Modules\Inventory\Dao\Repositories\BranchRepository;
 
 class BranchController extends Controller
@@ -29,9 +30,16 @@ class BranchController extends Controller
 
     private function share($data = [])
     {
+        $area = Helper::shareOption((new AreaRepository()), false, true, false);
+        $data_area = $area->mapWithKeys(function ($item) {
+            return [$item['rajaongkir_area_id'] => $item['rajaongkir_area_province_name'].' - '.$item['rajaongkir_area_city_name'].' - '.$item['rajaongkir_area_name'].' - '.$item['rajaongkir_area_postcode']];
+        })->prepend('- Pilih Salah Satu -', '');
+
+        
         $view = [
             'key'      => self::$model->getKeyName(),
             'template' => $this->template,
+            'area' => $data_area,
         ];
 
         return array_merge($view, $data);
@@ -40,7 +48,6 @@ class BranchController extends Controller
     public function create(MasterService $service, GeneralRequest $request)
     {
         if (request()->isMethod('POST')) {
-
             $data = $service->save(self::$model, $request->all());
             return Response::redirectBack($data);
         }

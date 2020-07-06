@@ -12,7 +12,7 @@ use Illuminate\Http\Exceptions\HttpResponseException;
 use Modules\Rajaongkir\Dao\Repositories\CityRepository;
 use Modules\Rajaongkir\Dao\Repositories\ProvinceRepository;
 
-class CityRequest extends FormRequest
+class AreaRequest extends FormRequest
 {
     /**
      * Get the validation rules that apply to the request.

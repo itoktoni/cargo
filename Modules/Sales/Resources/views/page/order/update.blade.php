@@ -1,4 +1,8 @@
 @extends(Helper::setExtendBackend())
+
+@component('component.date', ['array' => ['date']])
+@endcomponent
+
 @section('content')
 <div class="row">
 
@@ -8,51 +12,64 @@
     <div class="panel-body">
         <div class="panel panel-default">
             <header class="panel-heading">
-                <h2 class="panel-title">Edit Harga</h2>
-                </header>
+
+                <div class="row">
+                    <div class="col-md-6">
+                    <h2 class="panel-title">Edit Order {{ $model->sales_order_id }} </h2>
+                    </div>
+                    <div class="col-md-6 text-right">
+                        <br>                    
+                        <a class="btn btn-primary" data-toggle="collapse" href="#collapse" role="button"
+                            aria-expanded="false" aria-controls="collapseExample">
+                            Tampilkan Data Resi {{ $model->sales_order_rajaongkir_waybill }}
+                        </a>
+                    </div>
+                </div>
+
+            </header>
 
             <div class="panel-body line">
                 <div class="col-md-12 col-lg-12">
-                    <div class="form-group">
 
-                        {!! Form::label('name', 'Area Asal', ['class' => 'col-md-2 control-label']) !!}
-                        <div class="col-md-10 {{ $errors->has($form.'from') ? 'has-error' : ''}}">
-                            {{ Form::select($form.'from', $area, null, ['class'=> 'form-control']) }}
-                            {!! $errors->first($form.'from', '<p class="help-block">:message</p>') !!}
-                        </div>
-
+                    <div class="collapse" id="collapse">
+                        @include($folder.'::page.'.$template.'.form')
+                        <hr>
                     </div>
 
                     <div class="form-group">
-                    
-                        {!! Form::label('name', 'Area Tujuan', ['class' => 'col-md-2 control-label']) !!}
-                        <div class="col-md-10 {{ $errors->has($form.'to') ? 'has-error' : ''}}">
-                            {{ Form::select($form.'to', $area, null, ['class'=> 'form-control']) }}
-                            {!! $errors->first($form.'to', '<p class="help-block">:message</p>') !!}
-                        </div>
-                    
-                    </div>
-                    <hr>
-                    <div class="form-group">
 
-                        {!! Form::label('name', 'Paket', ['class' => 'col-md-2 control-label']) !!}
-                        <div class="col-md-2 {{ $errors->has($form.'paket') ? 'has-error' : ''}}">
-                            {{ Form::select($form.'paket', $paket, null, ['class'=> 'form-control']) }}
-                            {!! $errors->first($form.'paket', '<p class="help-block">:message</p>') !!}
-                        </div>
-
-                        {!! Form::label('name', 'Metode Pembayaran', ['class' => 'col-md-2 control-label']) !!}
-                        <div class="col-md-2 {{ $errors->has($form.'top') ? 'has-error' : ''}}">
-                            {{ Form::select($form.'top', $tops, null, ['class'=> 'form-control']) }}
-                            {!! $errors->first($form.'top', '<p class="help-block">:message</p>') !!}
-                        </div>
-
-                        {!! Form::label('name', 'Harga', ['class' => 'col-md-2 control-label']) !!}
-                        <div class="col-md-2 {{ $errors->has($form.'value') ? 'has-error' : ''}}">
-                            {!! Form::text($form.'value', null, ['class' => 'form-control']) !!}
+                        {!! Form::label('name', 'Tanggal', ['class' => 'col-md-2 control-label']) !!}
+                        <div class="col-md-4 {{ $errors->has($form.'value') ? 'has-error' : ''}}">
+                            <div class="input-group">
+                                <input type="text" name="so_delivery_date" value="{{ date('Y-m-d') }}" class="date">
+                                <span class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </span>
+                            </div>
                             {!! $errors->first($form.'value', '<p class="help-block">:message</p>') !!}
                         </div>
 
+                        {!! Form::label('name', 'Status Barang', ['class' => 'col-md-2 control-label']) !!}
+                        <div class="col-md-4 {{ $errors->has('so_delivery_type') ? 'has-error' : ''}}">
+                            {{ Form::select('so_delivery_type', $delivery, null, ['class'=> 'form-control', 'id' => 'to_area']) }}
+                            {!! $errors->first('so_delivery_type', '<p class="help-block">:message</p>') !!}
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+
+                        {!! Form::label('name', 'Location', ['class' => 'col-md-2 control-label']) !!}
+                        <div class="col-md-4 {{ $errors->has('so_delivery_location') ? 'has-error' : ''}}">
+                            {{ Form::select('so_delivery_location', $location, null, ['class'=> 'form-control', 'id' => 'to_area']) }}
+                            {!! $errors->first('so_delivery_location', '<p class="help-block">:message</p>') !!}
+                        </div>
+
+                        {!! Form::label('name', 'Keterangan', ['class' => 'col-md-2 control-label']) !!}
+                        <div class="col-md-4 {{ $errors->has('so_delivery_description') ? 'has-error' : ''}}">
+                            {!! Form::textarea('so_delivery_description', null, ['class' => 'form-control', 'rows' => 3]) !!}
+                            {!! $errors->first('so_delivery_description', '<p class="help-block">:message</p>') !!}
+                        </div>
                     </div>
 
                 </div>

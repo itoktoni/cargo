@@ -2,11 +2,13 @@
 
 namespace App\Dao\Repositories;
 
+use App\User;
 use Plugin\Notes;
 use Plugin\Helper;
-use App\User;
+use Illuminate\Support\Facades\DB;
 use App\Dao\Interfaces\MasterInterface;
 use Illuminate\Database\QueryException;
+use Modules\Inventory\Dao\Models\Branch;
 
 class TeamRepository extends User implements MasterInterface
 {
@@ -19,7 +21,19 @@ class TeamRepository extends User implements MasterInterface
     public function saveRepository($request)
     {
         try {
-            $activity = $this->create($request);
+            unset($request['_token']);
+
+            if(!empty($request['password'])){
+                $request['password'] =  bcrypt($request['password']);
+            }
+            else{
+                unset($request['password']);
+            }
+            
+            $branch = Branch::find($request['branch']);
+            $request['area'] = $branch->inventory_branch_area_id;
+
+            $activity = DB::table($this->getTable())->insert($request);
             return Notes::create($activity);
         } catch (\Illuminate\Database\QueryException $ex) {
             return Notes::error($ex->getMessage());
@@ -36,8 +50,17 @@ class TeamRepository extends User implements MasterInterface
             else{
                 unset($request['password']);
             }
+            
+            $branch = Branch::find($request['branch']);
+            $request['area'] = $branch->inventory_branch_area_id;
 
-            $activity = $this->findOrFail($id)->update($request);
+            unset($request['_token']);
+            unset($request['code']); 
+            $activity = DB::table($this->getTable())
+              ->where($this->getKeyName(), $id)
+              ->update($request);
+
+            $activity = $this->find($id)->update($request);
             return Notes::update($request);
         } catch (QueryException $ex) {
             return Notes::error($ex->getMessage());

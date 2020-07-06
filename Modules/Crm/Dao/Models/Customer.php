@@ -13,6 +13,7 @@ class Customer extends Model
     'crm_customer_name',
     'crm_customer_email',
     'crm_customer_phone',
+    'crm_customer_rajaongkir_area_id',
     'crm_customer_address',
     'crm_customer_notes',
     'crm_customer_crm_category_id',

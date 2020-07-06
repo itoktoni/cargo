@@ -9,6 +9,7 @@ use App\Http\Services\MasterService;
 use App\Http\Requests\GeneralRequest;
 use Modules\Crm\Dao\Repositories\CategoryRepository;
 use Modules\Crm\Dao\Repositories\CustomerRepository;
+use Modules\Rajaongkir\Dao\Repositories\AreaRepository;
 
 class CustomerController extends Controller
 {
@@ -31,11 +32,16 @@ class CustomerController extends Controller
     private function share($data = [])
     {
         $category = Helper::shareOption((new CategoryRepository()));
+        $area = Helper::shareOption((new AreaRepository()), false, true, false);
+        $data_area = $area->mapWithKeys(function ($item) {
+            return [$item['rajaongkir_area_id'] => $item['rajaongkir_area_province_name'].' - '.$item['rajaongkir_area_city_name'].' - '.$item['rajaongkir_area_name'].' - '.$item['rajaongkir_area_postcode']];
+        });
 
         $view = [
             'key'      => self::$model->getKeyName(),
             'template' => $this->template,
-            'categories' => $category
+            'categories' => $category,
+            'area' => $data_area
         ];
 
         return array_merge($view, $data);

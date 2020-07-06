@@ -3,4 +3,5 @@
 @endcomponent
 @section('content')
 
+
 @endsection

@@ -17,7 +17,8 @@
                 <input type="hidden" value="{{ $item->sales_order_detail_option }}" name="temp_option[]">
             </td>
             <td data-title="Product">
-                {{ $item->product->item_product_name }} {{ $item->sales_order_detail_item_size ?? '' }} {{ $item->color->item_color_name ?? '' }}
+                {{ $item->product->item_product_name }} {{ $item->sales_order_detail_item_size ?? '' }}
+                {{ $item->color->item_color_name ?? '' }}
             </td>
             <td data-title="Order" class="text-right col-lg-1">
                 <input type="text" readonly name="temp_order[]" class="form-control text-right money temp_price"
