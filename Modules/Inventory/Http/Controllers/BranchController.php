@@ -88,8 +88,9 @@ class BranchController extends Controller
     public function show(MasterService $service)
     {
         $data = $service->show(self::$model);
-        return view(Helper::setViewShow())->with($this->share([
-            'fields' => Helper::listData(self::$model->datatable),
+        $datatable = Helper::listData(self::$model->datatable)->forget('rajaongkir_area_name');
+        return view(Helper::setViewShow('branch', 'inventory'))->with($this->share([
+            'fields' => $datatable,
             'model'   => $data,
             'key'   => self::$model->getKeyName()
         ]));

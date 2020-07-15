@@ -91,7 +91,7 @@ class CustomerController extends Controller
     public function show(MasterService $service)
     {
         $data = $service->show(self::$model);
-        return view(Helper::setViewShow())->with($this->share([
+        return view(Helper::setViewShow('customer', 'crm'))->with($this->share([
             'fields' => Helper::listData(self::$model->datatable),
             'model'   => $data,
             'key'   => self::$model->getKeyName()

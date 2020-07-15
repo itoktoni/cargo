@@ -2,7 +2,9 @@
 
 namespace Modules\Crm\Dao\Models;
 
+use Modules\Crm\Dao\Models\Category;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Rajaongkir\Dao\Models\Area;
 
 class Customer extends Model
 {
@@ -33,8 +35,19 @@ class Customer extends Model
   public $datatable = [
     'crm_customer_id'          => [false => 'ID'],
     'crm_customer_name'        => [true => 'Name'],
-    'crm_customer_email'        => [false => 'Email'],
-    'crm_customer_phone'        => [false => 'Phone'],
-    'crm_customer_address'  => [false => 'Address'],  
+    'crm_customer_email'        => [true => 'Email'],
+    'crm_customer_phone'        => [true => 'Phone'],
+    'crm_customer_address'  => [true => 'Address'],  
   ];
+  
+    public function Category()
+    {
+        return $this->hasOne(Category::class, 'crm_category_id', 'crm_customer_crm_category_id');
+    }
+    
+    public function Area()
+    {
+        return $this->hasOne(Area::class, 'rajaongkir_area_id', 'crm_customer_rajaongkir_area_id');
+    }
+
 }

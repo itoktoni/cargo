@@ -3,6 +3,7 @@
 namespace Modules\Inventory\Dao\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Modules\Sales\Dao\Models\OrderDelivery;
 
 class Location extends Model
 {
@@ -44,6 +45,11 @@ class Location extends Model
   public function warehouse()
   {
     return $this->hasOne(Warehouse::class, 'inventory_warehouse_id', 'inventory_location_inventory_warehouse_id');
+  }
+
+    public function Order()
+  {
+    return $this->hasMany(OrderDelivery::class, 'so_delivery_location', 'inventory_location_id');
   }
 
 }

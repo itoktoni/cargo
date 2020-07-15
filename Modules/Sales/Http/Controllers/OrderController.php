@@ -4,6 +4,7 @@ namespace Modules\Sales\Http\Controllers;
 
 use Plugin\Helper;
 use Plugin\Response;
+use PDF;
 use App\Http\Controllers\Controller;
 use App\Http\Services\MasterService;
 use Illuminate\Support\Facades\Auth;
@@ -169,5 +170,22 @@ class OrderController extends Controller
             'delivery'   => $delivery,
             'key'   => self::$model->getKeyName()
         ]));
+    }
+
+    public function print_order(MasterService $service)
+    {
+        if (request()->has('code')) {
+            $data = $service->show(self::$model, ['detail']);
+            $id = request()->get('code');
+            $pasing = [
+                'master' => $data,
+                'vendor' => $data->vendor,
+                'detail' => $data->detail,
+            ];
+
+            $pdf = PDF::loadView(Helper::setViewPrint(__FUNCTION__, $this->folder), $pasing);
+            return $pdf->stream();
+            // return $pdf->download($id . '.pdf');
+        }
     }
 }
