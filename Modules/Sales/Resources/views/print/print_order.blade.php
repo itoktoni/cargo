@@ -408,7 +408,7 @@ a, h3 a, h4 a, h5 a, h6 a {
                         Kode Pos {{ $master->from->rajaongkir_area_postcode ?? '' }}
                     </td>
                     <td align='left' colspan='1' valign='top'>
-                        Kota Tujuan
+                        Tujuan
                     </td>
                     <td align='left' colspan='3' valign='top'>
                         {{ $master->to->rajaongkir_area_province_name ?? '' }} -
@@ -465,7 +465,7 @@ a, h3 a, h4 a, h5 a, h6 a {
                 </tr>
 
                 <tr>
-                    <td align="left" colspan='4' valign="middle" width="50%"
+                    <td align="left" colspan='4' valign="middle" width="60% !important"
                         style="border-collapse:collapse;border-spacing:0;font-family:Arial,sans-serif;color:#555;line-height:1.5;border-bottom-color:#cccccc;border-bottom-width:1px;border-bottom-style:solid;margin:0;padding:5px 10px"
                         bgcolor="#FFFFFF">
                         Paket : {{ $master->paket->rajaongkir_paket_name }} - Estimasi (
