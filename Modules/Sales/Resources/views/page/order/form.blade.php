@@ -128,7 +128,7 @@
         {!! $errors->first($form.'rajaongkir_colli', '<p class="help-block">:message</p>') !!}
     </div>
 
-    {!! Form::label('name', 'Berat / gram', ['class' => 'col-md-2 control-label']) !!}
+    {!! Form::label('name', 'Berat / Kg', ['class' => 'col-md-2 control-label']) !!}
     <div class="col-md-4 {{ $errors->has($form.'rajaongkir_weight') ? 'has-error' : ''}}">
         {!! Form::text($form.'rajaongkir_weight', null, ['class' => 'form-control']) !!}
         {!! $errors->first($form.'rajaongkir_weight', '<p class="help-block">:message</p>') !!}

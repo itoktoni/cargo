@@ -6,12 +6,16 @@ use App\User;
 use Plugin\Helper;
 use Modules\Sales\Dao\Models\Area;
 use Modules\Sales\Dao\Models\City;
+use Modules\Finance\Dao\Models\Top;
 use Illuminate\Support\Facades\Auth;
 use Modules\Crm\Dao\Models\Customer;
+use Modules\Sales\Dao\Models\Category;
 use Modules\Sales\Dao\Models\Province;
 use Illuminate\Database\Eloquent\Model;
 use Modules\Finance\Dao\Models\Payment;
 use Modules\Forwarder\Dao\Models\Vendor;
+use Modules\Inventory\Dao\Models\Branch;
+use Modules\Rajaongkir\Dao\Models\Paket;
 use Modules\Sales\Dao\Models\OrderDetail;
 use Modules\Sales\Dao\Models\OrderDelivery;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -112,7 +116,7 @@ class Order extends Model
     'sales_order_invoice_date',
   ];
 
-  public $status = [
+    public $status = [
     '1' => ['REGISTRASI', 'warning'],
     '2' => ['PERSIAPAN', 'primary'],
     '3' => ['PERNGIRIMAN', 'success'],
@@ -154,24 +158,34 @@ class Order extends Model
         return $this->hasMany(Payment::class, 'finance_payment_sales_order_id', 'sales_order_id');
     }
 
-    public function customer()
+    public function category()
     {
-        return $this->hasOne(User::class, 'id', 'sales_order_core_user_id');
+        return $this->hasOne(Category::class, 'sales_category_id', 'sales_order_rajaongkir_category_id');
     }
 
-    public function Province()
+    public function top()
     {
-        return $this->hasOne(Province::class, 'rajaongkir_province_id', 'sales_order_rajaongkir_province_id');
+        return $this->hasOne(Top::class, 'finance_top_code', 'sales_order_rajaongkir_finance_top_id');
     }
 
-    public function City()
+    public function paket()
     {
-        return $this->hasOne(City::class, 'rajaongkir_city_id', 'sales_order_rajaongkir_city_id');
+        return $this->hasOne(Paket::class, 'rajaongkir_paket_code', 'sales_order_rajaongkir_rajaongkir_paket_id');
     }
 
-    public function Area()
+    public function branch()
     {
-        return $this->hasOne(Area::class, 'rajaongkir_area_id', 'sales_order_rajaongkir_area_id');
+        return $this->hasOne(Branch::class, 'inventory_branch_id', 'sales_order_inventory_branch_id');
+    }
+
+    public function from()
+    {
+        return $this->hasOne(Area::class, 'rajaongkir_area_id', 'sales_order_rajaongkir_from_area_id');
+    }
+
+    public function to()
+    {
+        return $this->hasOne(Area::class, 'rajaongkir_area_id', 'sales_order_rajaongkir_to_area_id');
     }
 
     public static function boot()
@@ -194,8 +208,7 @@ class Order extends Model
             $model->sales_order_status = 1;
             $model->sales_order_id = Helper::autoNumber($model->getTable(), $model->getKeyName(), 'SO' . date('Ym'), config('website.autonumber'));
             
-            if($model->sales_order_rajaongkir_finance_top_id == 1){
-
+            if ($model->sales_order_rajaongkir_finance_top_id == 1) {
                 $payment = [
                     'finance_payment_sales_order_id' => $model->sales_order_id,
                     'finance_payment_account_id' => 1,
@@ -212,9 +225,7 @@ class Order extends Model
 
                 $mod = new PaymentRepository();
                 $mod->saveRepository($payment);
-
             }
-
         });
     }
 
