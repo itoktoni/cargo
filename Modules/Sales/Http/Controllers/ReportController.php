@@ -6,14 +6,9 @@ use Plugin\Helper;
 use Plugin\Response;
 use Maatwebsite\Excel\Excel;
 use App\Http\Controllers\Controller;
-use Modules\Item\Dao\Repositories\SizeRepository;
-use Modules\Item\Dao\Repositories\ColorRepository;
-use Modules\Item\Dao\Repositories\ReportRepository;
-use Modules\Item\Dao\Repositories\ProductRepository;
-use Modules\Item\Dao\Repositories\report\ReportInRepository;
-use Modules\Item\Dao\Repositories\report\ReportOutRepository;
-use Modules\Item\Dao\Repositories\report\ReportRealRepository;
-use Modules\Item\Dao\Repositories\report\ReportStockRepository;
+use Illuminate\Support\Facades\Auth;
+use Modules\Sales\Dao\Repositories\OrderRepository;
+use Modules\Inventory\Dao\Repositories\BranchRepository;
 use Modules\Sales\Dao\Repositories\report\ReportPenjualanRepository;
 
 class ReportController extends Controller
@@ -36,14 +31,17 @@ class ReportController extends Controller
 
     private function share($data = [])
     {
-        $product = Helper::shareOption(new ProductRepository());
-        $color = Helper::shareOption(new ColorRepository());
-        $size = Helper::shareOption(new SizeRepository());
+        $branch = Helper::shareOption(new BranchRepository());
+        $status = Helper::shareStatus((new OrderRepository())->status)->prepend('Pilih Semua Status', '');
+
+        $user_branch = Auth::user()->branch;
+        if (!empty($user_branch)) {
+            $branch = [$user_branch => $branch[$user_branch]];
+        }
 
         $view = [
-            'product' => $product,
-            'color' => $color,
-            'size' => $size,
+            'branch' => $branch,
+            'status' => $status,
             'template' => $this->template,
         ];
 
@@ -53,7 +51,7 @@ class ReportController extends Controller
     public function penjualan()
     {
         if (request()->isMethod('POST')) {
-            $name = 'report_sales_order_out_' . date('Y_m_d') . '.xlsx';;
+            $name = 'report_sales_order_out_' . date('Y_m_d') . '.xlsx';
             return $this->excel->download(new ReportPenjualanRepository(), $name);
         }
         return view(Helper::setViewForm($this->template, __FUNCTION__, config('folder')))->with($this->share());

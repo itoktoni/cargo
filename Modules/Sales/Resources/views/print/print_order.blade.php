@@ -346,11 +346,11 @@ a, h3 a, h4 a, h5 a, h6 a {
         </div>
         <div>
             <table border='0' cellpadding='5' cellspacing='0' id='templateList' width='100%'>
-                <tr>
+                <!-- <tr>
                     <td colspan='8' style='background: #{{ config('website.color') }} !important'>
 
                     </td>
-                </tr>
+                </tr> -->
                 <tr>
                     <td align='left' colspan='8' valign='middle'>
                         <p style="text-align:center;font-size:25px;font-weight:bold;margin:0px;">TANDA TERIMA TITIPAN
@@ -358,9 +358,9 @@ a, h3 a, h4 a, h5 a, h6 a {
                     </td>
                 </tr>
 
-                <tr>
+                <!-- <tr>
                     <th colspan='8' style='background: #{{ config('website.color') }} !important'></th>
-                </tr>
+                </tr> -->
                 <tr>
                     <td align='center' colspan='4' style='background-color: #e0e0e0 !important;width:50%' valign='top'>
                         <strong>Pengirim</strong>
@@ -443,9 +443,9 @@ a, h3 a, h4 a, h5 a, h6 a {
                         <p>{{ $master->sales_order_description }}</p>
                     </td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <th colspan='8' style='background: #{{ config('website.color') }} !important'></th>
-                </tr>
+                </tr> -->
                 <tr>
                     <td align='left' colspan='4' style='background-color: #e0e0e0 !important' valign='top'>
                         <strong>Keterangan</strong>
@@ -466,28 +466,28 @@ a, h3 a, h4 a, h5 a, h6 a {
 
                 <tr>
                     <td align="left" colspan='4' valign="middle" width="60% !important"
-                        style="border-collapse:collapse;border-spacing:0;font-family:Arial,sans-serif;color:#555;line-height:1.5;border-bottom-color:#cccccc;border-bottom-width:1px;border-bottom-style:solid;margin:0;padding:5px 10px"
+                        style="border-collapse:collapse;border-spacing:0;font-family:Arial,sans-serif;color:#555;line-height:1.5;border-bottom-width:1px;border-bottom-style:solid;margin:0;padding:5px 10px"
                         bgcolor="#FFFFFF">
                         Paket : {{ $master->paket->rajaongkir_paket_name }} - Estimasi (
                         {{ $master->paket->rajaongkir_paket_estimasi }} hari )
                     </td>
                     <td align="center" valign="middle" width="10%"
-                        style="border-collapse:collapse;border-spacing:0;font-family:Arial,sans-serif;color:#555;line-height:1.5;border-bottom-color:#cccccc;border-bottom-width:1px;border-bottom-style:solid;margin:0;padding:5px 10px"
+                        style="border-collapse:collapse;border-spacing:0;font-family:Arial,sans-serif;color:#555;line-height:1.5;border-bottom-width:1px;border-bottom-style:solid;margin:0;padding:5px 10px"
                         bgcolor="#FFFFFF">
                         {{ $master->sales_order_rajaongkir_colli }}
                     </td>
                     <td align="right" valign="middle" width="15%"
-                        style="border-collapse:collapse;border-spacing:0;font-family:Arial,sans-serif;color:#555;line-height:1.5;border-bottom-color:#cccccc;border-bottom-width:1px;border-bottom-style:solid;margin:0;padding:5px 10px"
+                        style="border-collapse:collapse;border-spacing:0;font-family:Arial,sans-serif;color:#555;line-height:1.5;border-bottom-width:1px;border-bottom-style:solid;margin:0;padding:5px 10px"
                         bgcolor="#FFFFFF">
                         {{ number_format( $master->sales_order_rajaongkir_cost_value / $master->sales_order_rajaongkir_colli ,0,",",".")}}
                     </td>
                     <td align="right" valign="middle" width="15%"
-                        style="border-collapse:collapse;border-spacing:0;font-family:Arial,sans-serif;color:#555;line-height:1.5;border-bottom-color:#cccccc;border-bottom-width:1px;border-bottom-style:solid;margin:0;padding:5px 10px"
+                        style="border-collapse:collapse;border-spacing:0;font-family:Arial,sans-serif;color:#555;line-height:1.5;border-bottom-width:1px;border-bottom-style:solid;margin:0;padding:5px 10px"
                         bgcolor="#FFFFFF">
                         {{ number_format($master->sales_order_rajaongkir_cost_additional,0,",",".") }}
                     </td>
                     <td align="right" valign="middle" width="25%"
-                        style="border-collapse:collapse;border-spacing:0;font-family:Arial,sans-serif;color:#555;line-height:1.5;border-bottom-color:#cccccc;border-bottom-width:1px;border-bottom-style:solid;margin:0;"
+                        style="border-collapse:collapse;border-spacing:0;font-family:Arial,sans-serif;color:#555;line-height:1.5;border-bottom-width:1px;border-bottom-style:solid;margin:0;"
                         bgcolor="#FFFFFF">
                         <span>
                             {{ number_format($master->sales_order_rajaongkir_cost_total,0,",",".") }}
@@ -495,13 +495,13 @@ a, h3 a, h4 a, h5 a, h6 a {
                     </td>
                 </tr>
 
-                <tr>
+                <!-- <tr>
                     <th colspan='8' style='background: #{{ config('website.color') }} !important'></th>
-                </tr>
+                </tr> -->
                 @if (!empty($master->sales_order_marketing_promo_description))
                 <tr>
                     <td align="left" colspan="7" valign="top"
-                        style="border-collapse:collapse;border-spacing:0;font-family:Arial,sans-serif;color:#555;line-height:1.5;border-bottom-color:#cccccc;border-bottom-width:1px;border-bottom-style:solid;margin:0;padding:5px 10px"
+                        style="border-collapse:collapse;border-spacing:0;font-family:Arial,sans-serif;color:#555;line-height:1.5;border-bottom-width:1px;border-bottom-style:solid;margin:0;padding:5px 10px"
                         bgcolor="#f0f0f0">
                         <span
                             style="font-family:Arial,sans-serif;color:#555;line-height:1.5;font-size:13px;margin:0;padding:0">
@@ -509,37 +509,50 @@ a, h3 a, h4 a, h5 a, h6 a {
                         </span>
                     </td>
                     <td align="right" valign="top" colspan="1"
-                        style="border-collapse:collapse;border-spacing:0;font-family:Arial,sans-serif;color:#555;line-height:1.5;border-bottom-color:#cccccc;border-bottom-width:1px;border-bottom-style:solid;margin:0;padding:5px 10px"
+                        style="border-collapse:collapse;border-spacing:0;font-family:Arial,sans-serif;color:#555;line-height:1.5;border-bottom-width:1px;border-bottom-style:solid;margin:0;padding:5px 10px"
                         bgcolor="#f0f0f0">
                         <span
                             style="text-align: right;font-family:Arial,sans-serif;color:#555;line-height:1.5;font-size:13px;margin:0;padding:0">-{{ number_format($master->sales_order_marketing_promo_value,0,",",".") }}</span>
                     </td>
                 </tr>
                 @endif
-                <tr>
-                    <th colspan="7"
-                        style="text-align: left;border-bottom-style:none;color:#ffffff;padding-left:10px;padding-right:10px"
-                        bgcolor="#{{ config('website.color') }}">
+                <tr style="border-top:1px solid black" border="1">
+                    <td align='left' colspan='7' style='background-color: #e0e0e0 !important;border-top:1px solid black !important' valign='top'>
                         <h2
                             style="font-family:Arial,sans-serif;color:#ffffff;line-height:1.5;font-size:13px;margin:0;padding:5px 0">
+                        <strong>
                             Total Tagihan
+                        </strong>
                         </h2>
-                    </th>
-                    <th colspan="1"
-                        style="text-align: right;border-bottom-style:none;color:#ffffff;padding-left:10px;padding-right:10px"
-                        bgcolor="#{{ config('website.color') }}">
+                    </td>
+                    <td align='right' colspan='1' style='background-color: #e0e0e0 !important;border-top:1px solid black !important' valign='top'>
                         <h2
                             style="text-align: right;font-family:Arial,sans-serif;color:#ffffff;line-height:1.5;font-size:13px;margin:0;padding:5px 0">
+                        <strong>
                             {{ number_format($master->sales_order_total,0,",",".") }}
+                        </strong>
                         </h2>
-                    </th>
+                    </td>
                 </tr>
-                <tr>
+               
+                <!-- <tr>
                     <th colspan='8' style='background: #{{ config('website.color') }} !important'></th>
-                </tr>
+                </tr> -->
             </table>
         </div>
-
+        <table border="0" style="margin-top:20px;width:100%;">
+        <tr>
+            <td align="center">Nama & Tanda Tangan Pengirim</td>
+            <td align="center">Nama & Tanda Tangan Penerima</td>
+        </tr>
+        <tr>
+            <td><br>
+            <br>
+            <br>
+            <br></td>
+            <td></td>
+        </tr>
+        </table>
 </body>
 
 </html>

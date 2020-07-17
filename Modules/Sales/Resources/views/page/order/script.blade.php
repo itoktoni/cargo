@@ -8,7 +8,7 @@
             $.ajax({
                 url: '{{ route("customer_api") }}',
                 method : 'POST',
-                data : {id : id },
+                data : {id : id,  "_token": "{{ csrf_token() }}"},
                 success: function (result){
                     if(result){
                         $('#from_name').val(result.crm_customer_name);
@@ -27,7 +27,7 @@
             $.ajax({
                 url: '{{ route("customer_api") }}',
                 method : 'POST',
-                data : {id : id },
+                data : {id : id,  "_token": "{{ csrf_token() }}"},
                 success: function (result){
                     if(result){
                         $('#to_name').val(result.crm_customer_name);
@@ -100,6 +100,7 @@
                     koli : koli, 
                     paket : paket, 
                     top : top, 
+                    "_token": "{{ csrf_token() }}"
                 },
                 success: function (result){
                     if(result){
@@ -171,6 +172,7 @@
                     data : {
                         discount : discount, 
                         cost : cost_total, 
+                        "_token": "{{ csrf_token() }}"
                     },
                     success: function (result){
                         if(result){

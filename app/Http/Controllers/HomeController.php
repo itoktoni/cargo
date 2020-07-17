@@ -99,17 +99,17 @@ class HomeController extends Controller
         //     ])
         //     ->setStroke(1);
 
-        $chart = new HomeChart();
-        $chart->labels(['One', 'Two', 'Three', 'Four']);
-        $chart->dataset('My dataset', 'line', [1, 2, 3, 4])->backgroundColor('#0088cc')->fill(true);
-        $chart->dataset('My dataset 2', 'line', [4, 3, 2, 1])->backgroundColor('#ddf1fa')->fill(true);
-        $chart->options([
-            'tooltip' => [
-                'show' => true // or false, depending on what you want.
-            ]
-        ]);
+        // $chart = new HomeChart();
+        // $chart->labels(['One', 'Two', 'Three', 'Four']);
+        // $chart->dataset('My dataset', 'line', [1, 2, 3, 4])->backgroundColor('#0088cc')->fill(true);
+        // $chart->dataset('My dataset 2', 'line', [4, 3, 2, 1])->backgroundColor('#ddf1fa')->fill(true);
+        // $chart->options([
+        //     'tooltip' => [
+        //         'show' => true // or false, depending on what you want.
+        //     ]
+        // ]);
 
-        return view(Helper::setViewDashboard())->with(['chart' => $chart]);
+        return view(Helper::setViewDashboard());
     }
 
     public function configuration()

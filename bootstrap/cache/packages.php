@@ -53,17 +53,6 @@
       'Image' => 'Intervention\\Image\\Facades\\Image',
     ),
   ),
-  'ixudra/curl' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Ixudra\\Curl\\CurlServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'Curl' => 'Ixudra\\Curl\\Facades\\Curl',
-    ),
-  ),
   'jackiedo/dotenv-editor' => 
   array (
     'providers' => 
@@ -82,13 +71,6 @@
       0 => 'Laravel\\Sanctum\\SanctumServiceProvider',
     ),
   ),
-  'laravel/ui' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Laravel\\Ui\\UiServiceProvider',
-    ),
-  ),
   'laravelcollective/html' => 
   array (
     'providers' => 
@@ -99,24 +81,6 @@
     array (
       'Form' => 'Collective\\Html\\FormFacade',
       'Html' => 'Collective\\Html\\HtmlFacade',
-    ),
-  ),
-  'maatwebsite/excel' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'Excel' => 'Maatwebsite\\Excel\\Facades\\Excel',
-    ),
-  ),
-  'nesbot/carbon' => 
-  array (
-    'providers' => 
-    array (
-      0 => 'Carbon\\Laravel\\ServiceProvider',
     ),
   ),
   'nunomaduro/collision' => 
@@ -146,6 +110,42 @@
     'aliases' => 
     array (
       'DataTables' => 'Yajra\\DataTables\\Facades\\DataTables',
+    ),
+  ),
+  'nesbot/carbon' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Carbon\\Laravel\\ServiceProvider',
+    ),
+  ),
+  'ixudra/curl' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Ixudra\\Curl\\CurlServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Curl' => 'Ixudra\\Curl\\Facades\\Curl',
+    ),
+  ),
+  'laravel/ui' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Laravel\\Ui\\UiServiceProvider',
+    ),
+  ),
+  'maatwebsite/excel' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'Maatwebsite\\Excel\\ExcelServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'Excel' => 'Maatwebsite\\Excel\\Facades\\Excel',
     ),
   ),
 );

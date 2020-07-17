@@ -2,12 +2,10 @@
 
 namespace Modules\Sales\Dao\Repositories\report;
 
-use Plugin\Helper;
 use Plugin\Notes;
+use Plugin\Helper;
 use Illuminate\Support\Facades\DB;
-use Modules\Item\Dao\Models\Color;
-use Modules\Item\Dao\Models\Stock;
-use Modules\Item\Dao\Models\Product;
+use Modules\Sales\Dao\Models\Order;
 use App\Dao\Interfaces\MasterInterface;
 use Illuminate\Database\QueryException;
 use Maatwebsite\Excel\Concerns\FromQuery;
@@ -17,51 +15,50 @@ use PhpOffice\PhpSpreadsheet\Style\Alignment;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\ShouldAutoSize;
 use PhpOffice\PhpSpreadsheet\Style\NumberFormat;
-use Modules\Item\Dao\Repositories\StockRepository;
-use Modules\Procurement\Dao\Models\PurchaseDetail;
+use Modules\Sales\Dao\Repositories\OrderRepository;
 use Maatwebsite\Excel\Concerns\WithColumnFormatting;
-use Modules\Procurement\Dao\Repositories\PurchaseRepository;
 
-class ReportPenjualanRepository extends Stock implements FromCollection, WithHeadings, ShouldAutoSize, WithColumnFormatting
+class ReportPenjualanRepository extends Order implements FromCollection, WithHeadings, ShouldAutoSize, WithColumnFormatting
 {
     public function headings(): array
     {
         return [
-            'Sales ID',
-            'Create Date',
-            'Customer',
-            'Email',
-            'Phone',
-            'Product ID',
-            'Product Name',
-            'Color',
-            'Size',
-            'SKU',
-            'Qty Order',
-            'Qty Prepare',
-            'Price Order',
-            'Tax Name',
-            'Tax Value',
+            'No Order',
+            'No Resi',
+            'Nama Cabang',
+            'Tanggal',
+            'Nama Pengirim',
+            'Telp Pengirim',
+            'Nama Penerima',
+            'Telp Penerima',
+            'Koli',
+            'Katagori',
+            'Nama Paket',
+            'Pembayaran',
+            'Harga',
+            'Tambahan Harga',
+            'Keterangan Tambahan',
+            'Nama Diskon',
+            'Harga Diskon',
             'Total Order',
-            'Discount',
-            'Jasa Pengiriman',
-            'Ongkir',
         ];
     }
 
     public function collection()
     {
-        $query = DB::table('view_sales_order')
-            ->where('sales_order_detail_qty_prepare', '>', 0)
-            ->select(['sales_order_id', 'sales_order_date', 'sales_order_rajaongkir_name', 'sales_order_email', 'sales_order_rajaongkir_phone', 'item_product_id', 'item_product_name', 'item_color_name', 'sales_order_detail_item_size', 'sales_order_detail_option', 'sales_order_detail_qty_order', 'sales_order_detail_qty_prepare', 'sales_order_detail_price_order',  'sales_order_detail_tax_name', 'sales_order_detail_tax_value', 'sales_order_detail_total_order', 'sales_order_detail_discount', 'sales_order_rajaongkir_service', 'sales_order_rajaongkir_ongkir']);
-        if ($product = request()->get('product')) {
-            $query->where('item_product_id', $product);
+        $model = new OrderRepository();
+        $query = $model->dataRepository(['sales_order_id', 'sales_order_rajaongkir_waybill','inventory_branch_name','sales_order_date', 'sales_order_rajaongkir_from_name', 'sales_order_rajaongkir_from_phone', 'sales_order_rajaongkir_to_name', 'sales_order_rajaongkir_to_phone',  'sales_order_rajaongkir_colli', 'sales_category_name' ,'rajaongkir_paket_name', 'finance_top_name' ,'sales_order_rajaongkir_cost_value', 'sales_order_rajaongkir_cost_additional', 'sales_order_rajaongkir_cost_description', 'sales_order_marketing_promo_description',  'sales_order_marketing_promo_value', 'sales_order_rajaongkir_cost_total']);
+        if ($from = request()->get('from')) {
+            $query->where('sales_order_date', '>=', $from);
         }
-        if ($color = request()->get('color')) {
-            $query->where('sales_order_detail_item_color', $color);
+        if ($to = request()->get('to')) {
+            $query->where('sales_order_date', '<=', $to);
         }
-        if ($size = request()->get('size')) {
-            $query->where('sales_order_detail_item_size', $size);
+        if ($branch = request()->get('branch')) {
+            $query->where('sales_order_inventory_branch_id', $branch);
+        }
+        if ($status = request()->get('status')) {
+            $query->where('sales_order_status', $status);
         }
         return $query->get();
     }
@@ -69,9 +66,13 @@ class ReportPenjualanRepository extends Stock implements FromCollection, WithHea
     public function columnFormats(): array
     {
         return [
-            'B' => NumberFormat::FORMAT_DATE_DATETIME,
-            'G' => NumberFormat::FORMAT_NUMBER,
+            'C' => NumberFormat::FORMAT_DATE_DATETIME,
             'H' => NumberFormat::FORMAT_NUMBER,
+            'L' => NumberFormat::FORMAT_NUMBER,
+            'M' => NumberFormat::FORMAT_NUMBER,
+            'O' => NumberFormat::FORMAT_NUMBER,
+            'P' => NumberFormat::FORMAT_NUMBER,
+            'Q' => NumberFormat::FORMAT_NUMBER,
         ];
     }
 }

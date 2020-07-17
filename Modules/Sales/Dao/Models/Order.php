@@ -36,6 +36,7 @@ class Order extends Model
     'sales_order_date',
     'sales_order_prepare_date',
     'sales_order_delivery_date',
+    'sales_order_marketing_promo_name',
     'sales_order_marketing_promo_value',
     'sales_order_marketing_promo_description',
     'sales_order_total',
@@ -119,7 +120,7 @@ class Order extends Model
     public $status = [
     '1' => ['REGISTRASI', 'warning'],
     '2' => ['PERSIAPAN', 'primary'],
-    '3' => ['PERNGIRIMAN', 'success'],
+    '3' => ['PENGIRIMAN', 'success'],
     '4' => ['SAMPAI TUJUAN', 'dark'],
     '0' => ['GAGAL', 'danger'],
   ];

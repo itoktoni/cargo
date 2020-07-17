@@ -16,11 +16,15 @@ class OrderRepository extends Order implements MasterInterface
     public $data;
     public static $customer;
 
-    public function dataRepository()
+    public function dataRepository($select = null)
     {
-        $list = Helper::dataColumn($this->datatable, $this->getKeyName());
-        $list2 = \array_merge($list, ['finance_top_name', 'rajaongkir_paket_name']);
-        return $this->select($list2)
+        if (empty($select)) {
+            $list = Helper::dataColumn($this->datatable, $this->getKeyName());
+            $select = \array_merge($list, ['finance_top_name', 'rajaongkir_paket_name']);
+        }
+        return $this->select($select)
+        ->leftJoin('inventory_branch', 'inventory_branch_id', '=', 'sales_order_inventory_branch_id')
+        ->leftJoin('sales_category', 'sales_category_id', '=', 'sales_order_rajaongkir_category_id')
         ->leftJoin('finance_top', 'finance_top_code', '=', 'sales_order_rajaongkir_finance_top_id')
         ->leftJoin('rajaongkir_paket', 'rajaongkir_paket_code', '=', 'sales_order_rajaongkir_rajaongkir_paket_id');
     }
