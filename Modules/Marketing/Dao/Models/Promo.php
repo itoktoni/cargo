@@ -56,7 +56,7 @@ class Promo extends Model
     'marketing_promo_default'        => [true => 'Default'],
     'marketing_promo_slug'        => [false => 'Slug'],
     'marketing_promo_description' => [true => 'Description'],
-    'marketing_promo_image'        => [true => 'Images'],
+    'marketing_promo_image'        => [false => 'Images'],
     'marketing_promo_status'        => [true => 'Status'],
     'marketing_promo_created_by'  => [false => 'Updated At'],
   ];
