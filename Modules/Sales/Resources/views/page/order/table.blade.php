@@ -25,7 +25,7 @@
             </td>
             <td data-title="Area">
                 @php
-                    $area = $item->location->warehouse->branch->area;
+                    $area = $item->location->warehouse->branch->area ?? null;
                 @endphp
                 {{ $area->rajaongkir_area_province_name ?? '' }} - {{ $area->rajaongkir_area_city_name ?? '' }} - {{ $area->rajaongkir_area_name ?? '' }}
             </td>
