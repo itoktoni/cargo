@@ -3,12 +3,13 @@
 namespace Modules\Inventory\Dao\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Modules\Inventory\Dao\Models\branch;
 
 class Warehouse extends Model
 {
-  protected $table = 'inventory_warehouse';
-  protected $primaryKey = 'inventory_warehouse_id';
-  protected $fillable = [
+    protected $table = 'inventory_warehouse';
+    protected $primaryKey = 'inventory_warehouse_id';
+    protected $fillable = [
     'inventory_warehouse_id',
     'inventory_warehouse_inventory_branch_id',
     'inventory_warehouse_code',
@@ -18,27 +19,31 @@ class Warehouse extends Model
     'inventory_warehouse_created_by',
   ];
 
-  public $timestamps = false;
-  public $incrementing = true;
-  public $rules = [
+    public $timestamps = false;
+    public $incrementing = true;
+    public $rules = [
     'inventory_warehouse_name' => 'required|min:3',
   ];
 
-  const CREATED_AT = 'inventory_warehouse_created_at';
-  const UPDATED_AT = 'inventory_warehouse_created_by';
+    const CREATED_AT = 'inventory_warehouse_created_at';
+    const UPDATED_AT = 'inventory_warehouse_created_by';
 
-  public $searching = 'inventory_warehouse_name';
-  private static $inventory;
-  public $datatable = [
+    public $searching = 'inventory_warehouse_name';
+    private static $inventory;
+    public $datatable = [
     'inventory_warehouse_id'          => [false => 'ID'],
     'inventory_warehouse_name'        => [true => 'Name'],
     'inventory_warehouse_name'       => [true => 'Inventory'],
     'inventory_warehouse_description' => [true => 'Description'],
   ];
 
-  public $status = [
+    public $status = [
     '1' => ['Active', 'primary'],
     '0' => ['Not Active', 'danger'],
   ];
 
+    public function branch()
+    {
+        return $this->hasOne(branch::class, 'inventory_branch_id', 'inventory_warehouse_inventory_branch_id');
+    }
 }

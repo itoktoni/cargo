@@ -3,6 +3,7 @@
 namespace Modules\Inventory\Dao\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Modules\Inventory\Dao\Models\Warehouse;
 use Modules\Sales\Dao\Models\OrderDelivery;
 
 class Location extends Model
@@ -19,6 +20,7 @@ class Location extends Model
     'inventory_location_created_by',
   ];  
 
+  protected $with = ['warehouse'];
   public $timestamps = false;
   public $incrementing = true;
   public $rules = [

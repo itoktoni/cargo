@@ -27,7 +27,6 @@
                     </table>
 
                     @include($folder.'::page.'.$template.'.payment')
-                    
                     @include($folder.'::page.'.$template.'.table')
                 </div>
             </div>
