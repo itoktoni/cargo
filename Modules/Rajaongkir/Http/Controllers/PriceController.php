@@ -103,7 +103,7 @@ class PriceController extends Controller
             return $datatable->make(true);
         }
 
-        return view(Helper::setViewData())->with([
+        return view(Helper::setViewData($this->template, $this->folder))->with([
             'fields'   => Helper::listData(self::$model->datatable),
             'template' => $this->template,
         ]);
