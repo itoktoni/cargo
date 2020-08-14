@@ -312,10 +312,10 @@ a, h3 a, h4 a, h5 a, h6 a {
 <body>
     <div id='page'>
         <div>
-            <img style="margin-top:-20px;height:50px;margin-left:-10px;"
+            <img style="margin-top:-40px;height:50px;margin-left:-10px;"
                 src="{{ Helper::print('logo/'.config('website.logo')) }}" alt="">
-            <div style="position: absolute;top:-50px; right: 0;text-align: right">
-                <h1 style="margin-bottom:0px;margin-right:-9px;font-size:12px'font-weight:bold">
+            <div style="position: absolute;top:-80px; right: 0;text-align: right">
+                <h1 style="margin-bottom:0px;margin-right:-9px;font-size:15px'font-weight:bold">
                     <span>
                         NO. Resi
                         <strong
@@ -326,7 +326,7 @@ a, h3 a, h4 a, h5 a, h6 a {
                 <span style="position: absolute;top:40px; right: -3;text-align: right; font-size:10px">
                     Tanggal Cetak : {{ date('d M Y H:i') }}
                 </span>
-                <table border="1" style="position: absolute;top:65px;right:-3px;width:200px;font-size:10px">
+                <table border="1" style="position: absolute;top:60px;right:-3px;width:200px;font-size:10px">
                     <tr>
                         <td style="width: 30%;text-align:right">Kategori</td>
                         <td>{{ $master->category->sales_category_name ?? '-' }}</td>
@@ -338,14 +338,14 @@ a, h3 a, h4 a, h5 a, h6 a {
                 </table>
             </div>
         </div>
-        <div id="description" style='margin-top: -20px; margin-bottom: 20px;font-size:10px'>
+        <div id="description" style='position:absolute;top:-15px; margin-bottom: 20px;font-size:10px'>
             {!! config('website.address') !!}
-            <span style="position:absolute;top:55px;">
+            <span style="position:absolute;top:45px;">
                 Cabang : {{ $master->branch->inventory_branch_name ?? ''}}
             </span>
         </div>
         <div>
-            <table border='0' cellpadding='5' cellspacing='0' id='templateList' width='100%' style="font-size:10px">
+            <table border='0' cellpadding='5' cellspacing='0' id='templateList' width='100%' style="font-size:10px;margin-top:20px">
                 <!-- <tr>
                     <td colspan='8' style='background: #{{ config('website.color') }} !important'>
 
