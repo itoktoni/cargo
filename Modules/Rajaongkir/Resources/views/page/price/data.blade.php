@@ -14,8 +14,8 @@
                             <option value="">Spesific Search</option>
                             <option value="from.rajaongkir_area_city_name">Kota Asal</option>
                             <option value="from.rajaongkir_area_name">Asal</option>
-                            <option value="to.rajaongkir_area_name">Tujuan</option>
-                            <option value="to.rajaongkir_area_city_name">Area</option>
+                            <option value="to.rajaongkir_area_city_name">Tujuan</option>
+                            <option value="to.rajaongkir_area_name">Area</option>
                             <option value="to.rajaongkir_area_postcode">Zipcode</option>
                             <option value="finance_top_name">Top</option>
                             <option value="rajaongkir_paket_name">Paket</option>

@@ -183,7 +183,7 @@ class OrderController extends Controller
                 'detail' => $data->detail,
             ];
             // return view(Helper::setViewPrint(__FUNCTION__, $this->folder))->with($pasing);
-            $pdf = PDF::loadView(Helper::setViewPrint(__FUNCTION__, $this->folder), $pasing);
+            $pdf = PDF::loadView(Helper::setViewPrint(__FUNCTION__, $this->folder), $pasing)->setPaper('A5', 'landscape');
             return $pdf->stream();
             // return $pdf->download($id . '.pdf');
         }

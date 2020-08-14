@@ -142,6 +142,10 @@ a, h3 a, h4 a, h5 a, h6 a {
                     font-weight: inherit
                 }
 
+                h1{
+                    font-size: 1rem;
+                }
+
                 h2 {
                     font-size: 2em;
                     line-height: 1.5;
@@ -312,21 +316,21 @@ a, h3 a, h4 a, h5 a, h6 a {
 <body>
     <div id='page'>
         <div>
-            <img style="margin-top:-20px;height:50px;margin-left:-10px;"
+            <img style="margin-top:-20px;height:80px;margin-left:-10px;"
                 src="{{ Helper::print('logo/'.config('website.logo')) }}" alt="">
             <div style="position: absolute;top:-50px; right: 0;text-align: right">
-                <h1 style="margin-bottom:0px;margin-right:-9px;font-size:12px'font-weight:bold">
+                <h1 style="margin-bottom:0px;margin-right:-13px;font-size:1rem">
                     <span>
                         NO. Resi
-                        <strong
-                            style='color: #{{ config('website.color') }} !important'>{{ $master->sales_order_rajaongkir_waybill }}</strong>
+                        <span
+                            style='color: #{{ config('website.color') }} !important'>{{ $master->sales_order_rajaongkir_waybill }}</span>
                     </span>
                 </h1>
 
-                <span style="position: absolute;top:40px; right: -3;text-align: right; font-size:10px">
+                <span style="position: absolute;top:70px; right: -3;text-align: right">
                     Tanggal Cetak : {{ date('d M Y H:i') }}
                 </span>
-                <table border="1" style="position: absolute;top:65px;right:-3px;width:200px;font-size:10px">
+                <table border="1" style="position: absolute;top:90px;right:-3px;width:200px;">
                     <tr>
                         <td style="width: 30%;text-align:right">Kategori</td>
                         <td>{{ $master->category->sales_category_name ?? '-' }}</td>
@@ -338,14 +342,14 @@ a, h3 a, h4 a, h5 a, h6 a {
                 </table>
             </div>
         </div>
-        <div id="description" style='margin-top: -20px; margin-bottom: 20px;font-size:10px'>
+        <div id="description" style='margin-top: -20px; margin-bottom: 20px;'>
             {!! config('website.address') !!}
             <span style="position:absolute;top:55px;">
                 Cabang : {{ $master->branch->inventory_branch_name ?? ''}}
             </span>
         </div>
         <div>
-            <table border='0' cellpadding='5' cellspacing='0' id='templateList' width='100%' style="font-size:10px">
+            <table border='0' cellpadding='5' cellspacing='0' id='templateList' width='100%'>
                 <!-- <tr>
                     <td colspan='8' style='background: #{{ config('website.color') }} !important'>
 
@@ -353,7 +357,7 @@ a, h3 a, h4 a, h5 a, h6 a {
                 </tr> -->
                 <tr>
                     <td align='left' colspan='8' valign='middle'>
-                        <p style="text-align:center;font-size:13px;font-weight:bold;margin:0px;">TANDA TERIMA TITIPAN
+                        <p style="text-align:center;font-size:25px;font-weight:bold;margin:0px;">TANDA TERIMA TITIPAN
                         </p>
                     </td>
                 </tr>
@@ -435,13 +439,17 @@ a, h3 a, h4 a, h5 a, h6 a {
                     </td>
                 </tr>
                 <tr>
-                    <td>
-                        Catatan
+                    <td align='left' colspan='1' valign='top'>
+                        <p>Catatan</p>
                     </td>
-                    <td colspan="7">
-                        {{ $master->sales_order_rajaongkir_notes }} {{ $master->sales_order_description }}
+                    <td align='left' colspan='7' valign='top'>
+                        <p>{{ $master->sales_order_rajaongkir_notes }}</p>
+                        <p>{{ $master->sales_order_description }}</p>
                     </td>
                 </tr>
+                <!-- <tr>
+                    <th colspan='8' style='background: #{{ config('website.color') }} !important'></th>
+                </tr> -->
                 <tr>
                     <td align='left' colspan='4' style='background-color: #e0e0e0 !important' valign='top'>
                         <strong>Keterangan</strong>
@@ -455,7 +463,7 @@ a, h3 a, h4 a, h5 a, h6 a {
                     <td align='right' colspan='1' style='background-color: #e0e0e0 !important' valign='top'>
                         <strong>Tambahan</strong>
                     </td>
-                    <td align='right' colspan='1' style='background-color: #e0e0e0 !important;padding-right:10px' valign='top'>
+                    <td align='right' colspan='1' style='background-color: #e0e0e0 !important' valign='top'>
                         <strong>Total</strong>
                     </td>
                 </tr>
@@ -515,7 +523,7 @@ a, h3 a, h4 a, h5 a, h6 a {
                 <tr style="border-top:1px solid black" border="1">
                     <td align='left' colspan='7' style='background-color: #e0e0e0 !important;border-top:1px solid black !important' valign='top'>
                         <h2
-                            style="font-family:Arial,sans-serif;color:#ffffff;line-height:1.5;font-size:10px;margin:0;padding:5px 0">
+                            style="font-family:Arial,sans-serif;color:#ffffff;line-height:1.5;font-size:13px;margin:0;padding:5px 0">
                         <strong>
                             Total Tagihan
                         </strong>
@@ -523,7 +531,7 @@ a, h3 a, h4 a, h5 a, h6 a {
                     </td>
                     <td align='right' colspan='1' style='background-color: #e0e0e0 !important;border-top:1px solid black !important' valign='top'>
                         <h2
-                            style="text-align: right;font-family:Arial,sans-serif;color:#ffffff;line-height:1.5;font-size:10px;margin:0;padding:5px 0">
+                            style="text-align: right;font-family:Arial,sans-serif;color:#ffffff;line-height:1.5;font-size:13px;margin:0;padding:5px 0">
                         <strong>
                             {{ number_format($master->sales_order_total,0,",",".") }}
                         </strong>
@@ -536,7 +544,7 @@ a, h3 a, h4 a, h5 a, h6 a {
                 </tr> -->
             </table>
         </div>
-        <table border="0" style="margin-top:10px;width:100%;font-size:10px;margin-bottom:-50px">
+        <table border="0" style="margin-top:20px;width:100%;">
         <tr>
             <td align="center">Nama & Tanda Tangan Pengirim</td>
             <td align="center">Nama & Tanda Tangan Penerima</td>
