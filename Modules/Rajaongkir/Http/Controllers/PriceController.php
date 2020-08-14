@@ -63,7 +63,7 @@ class PriceController extends Controller
 
         $cities = Helper::shareOption((new CityRepository()), false, true, false);
         $data_city = $cities->mapWithKeys(function ($item) {
-            return [$item['rajaongkir_city_id'] => $item['rajaongkir_city_province_name'].' - '.$item['rajaongkir_city_name']];
+            return [$item['rajaongkir_city_id'] => $item['rajaongkir_city_province_name'].' - '.$item['rajaongkir_city_name'].' - '.$item['rajaongkir_city_type']];
         })->prepend('- Pilih salah satu -', '');
 
         return view(Helper::setViewCreate())->with($this->share([
