@@ -12,8 +12,8 @@
                     <div class="row">
                         <select name="code" class="form-control">
                             <option value="">Spesific Search</option>
-                            <option value="from.rajaongkir_area_name">Kota Asal</option>
-                            <option value="from.rajaongkir_area_city_name">Asal</option>
+                            <option value="from.rajaongkir_area_city_name">Kota Asal</option>
+                            <option value="from.rajaongkir_area_name">Asal</option>
                             <option value="to.rajaongkir_area_name">Tujuan</option>
                             <option value="to.rajaongkir_area_city_name">Area</option>
                             <option value="to.rajaongkir_area_postcode">Zipcode</option>

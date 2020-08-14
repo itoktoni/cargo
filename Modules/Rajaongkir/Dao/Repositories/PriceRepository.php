@@ -16,7 +16,7 @@ class PriceRepository extends Price implements MasterInterface
     {
         $list = Helper::dataColumn($this->datatable, $this->getKeyName());
         
-        return $this->select([DB::raw('rajaongkir_price.*'), 'finance_top_name', 'rajaongkir_paket_name', DB::raw('from.rajaongkir_area_name as from_name'), DB::raw('from.rajaongkir_area_city_name as from_city'), DB::raw('to.rajaongkir_area_city_name as to_city'), DB::raw('to.rajaongkir_area_name as to_name'), DB::raw('to.rajaongkir_area_postcode as postcode')])
+        return $this->select([DB::raw('rajaongkir_price.*'), 'finance_top_name', 'rajaongkir_paket_name', DB::raw('from.rajaongkir_area_name'), DB::raw('from.rajaongkir_area_name as from_name'), DB::raw('from.rajaongkir_area_city_name as from_city'), DB::raw('to.rajaongkir_area_city_name as to_city'), DB::raw('to.rajaongkir_area_name as to_name'), DB::raw('to.rajaongkir_area_postcode as postcode')])
         ->leftJoin('finance_top', 'finance_top_code', '=', 'rajaongkir_price_top')
         ->leftJoin('rajaongkir_paket', 'rajaongkir_paket_code', '=', 'rajaongkir_price_paket')
         ->leftJoin('rajaongkir_areas as from', DB::raw('from.rajaongkir_area_id'), '=', 'rajaongkir_price_from')
